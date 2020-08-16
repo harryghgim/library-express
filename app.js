@@ -13,8 +13,9 @@ var app = express();
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://mdnUser:mypassword@mdn-express-tutorial.1wvdh.gcp.mongodb.net/library?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, {useNewUrlParser: true});
+// username and password saved in mongoDB_username and mongoDB_password respectively
+var mongoDB = `mongodb+srv://${process.env.mongoDB_username}:${process.env.mongoDB_password}@mdn-express-tutorial.1wvdh.gcp.mongodb.net/library?retryWrites=true&w=majority`;
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 

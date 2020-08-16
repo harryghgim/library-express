@@ -3,7 +3,8 @@ extends layout
 block content
 
   h1 Author: #{author.name}
-  p ( #{author.lifespan} )
+  p
+    em #{author.lifespan}
   
   div(style='margin-left:20px;margin-top:20px')
 
@@ -13,7 +14,11 @@ block content
       each book in author_books
         dt 
           a(href=book.url) #{book.title}
-        dd #{book.summary}
+        dd(style="margin-bottom: 10px") #{book.summary}
 
       else
         p This author has no books.
+  hr
+  p
+    a(href=author.url+'/update' style="margin-right:10px").btn Update author
+    a(href=author.url+'/delete').btn Delete author

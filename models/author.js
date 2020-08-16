@@ -22,7 +22,7 @@ AuthorSchema
   
     var fullname = '';
     if (this.first_name && this.family_name) {
-      fullname = this.family_name + ', ' + this.first_name
+      fullname = `${this.first_name} ${this.family_name}`  
     }
     if (!this.first_name || !this.family_name) {
       fullname = '';
@@ -43,6 +43,18 @@ AuthorSchema
   .get(function(){
     return '/catalog/author/' + this._id;
   });
+
+AuthorSchema
+  .virtual('dob_formatted')
+  .get(function() {
+    return moment(this.date_of_birth).format('YYYY-MM-DD')
+  });
+
+AuthorSchema
+  .virtual('dod_formatted')
+  .get(function() {
+    return moment(this.date_of_death).format('YYYY-MM-DD')
+  })
 
 
 // Export model
